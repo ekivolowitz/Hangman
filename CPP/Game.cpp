@@ -7,7 +7,16 @@
 #include "Environment.h"
 
 const int NUMBER_WORDS_IN_HANGMAN_FILE = 854;
-
+/**
+*	This function takes string input from the user and verifies if it is valid input to determine 
+*	if the game should begin or not.
+*
+* 	@param string - input - Value taken by program from user to verify if it is formatted correctly.
+*		A correct format will have either a 'Y' or a 'N', and nothing else.
+*	@return True if it is valid input.
+*	@return False if it is invalid input.
+*	@return Exit if player should decide not to play the game (by entering 'N').
+*/
 bool checkBeginGameInput(string input)
 {
 	if(input.length() != 1)
@@ -29,29 +38,6 @@ bool checkBeginGameInput(string input)
 		cout << "Incorrect usage. Please enter only \'Y\' or \'N\'" << endl;
 		return false;
 	}
-
-}
-
-string getRandomWord(int wordLine)
-{
-	ifstream file("hangman_words.txt");
-	for(int i = 0; i < NUMBER_WORDS_IN_HANGMAN_FILE; i++)
-	{
-		if(i == wordLine)
-		{
-			string returnString;
-			getline(file, returnString);
-			cout << "Line number is " << i + 1 << endl;
-			cout << "Word is " << returnString << endl;
-			return returnString;
-		}
-		else
-		{
-			string temp;
-			getline(file, temp);
-		}
-	}
-
 }
 
 
@@ -62,7 +48,8 @@ int main()
 	int randomNumber = rand() % NUMBER_WORDS_IN_HANGMAN_FILE;
 
 	string secretWord = getRandomWord(randomNumber);
-	cout << "Welcome to Hangman. This program was brought to you by Evan Kivolowitz as a way to learn C++.\n\n" << env.getEnvironment() << endl;
+	cout << "Welcome to Hangman. This program was brought to you by Evan Kivolowitz as a way to learn C++." << endl;
+	env.toString();
 
 	
 	while(true)
