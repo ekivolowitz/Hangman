@@ -1,15 +1,17 @@
+#include <iostream>
 #include <string>
-
+#include <vector>
 using namespace std;
 
 
 class Environment
 {
 private:
-string env;
+vector<string> env;
 
 
 public:
 Environment();
-string getEnvironment();
+vector<string> getEnvironment();
+void toString();
 };
