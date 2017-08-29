@@ -9,14 +9,15 @@ class Environment
 {
 
 private:
-vector<string> env;
-int incorrectGuesses;
+    vector<char> guessedLetters;
+    vector<string> env;
+    int incorrectGuesses;
+    void addPartToHangman();
+    void setSecretWord(string secretWord);
+    vector<string> getEnvironment();
 
 public:
-Environment();
-vector<string> getEnvironment();
-string toString();
-void setSecretWord(string secretWord);
-void addPartToHangman();
-int getNumberIncorrectGuesses();
+    Environment(string secretWord);
+    string toString();
+    int getNumberIncorrectGuesses();
 };

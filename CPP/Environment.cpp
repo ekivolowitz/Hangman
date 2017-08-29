@@ -6,29 +6,9 @@
 *	@param none
 *	@return none
 */
-
-Environment::Environment()
+Environment::Environment(string secretWord)
 {
 	incorrectGuesses = 0;
-	// env.push_back("/////////////////////////////////////////////////////\n");
-	// env.push_back("//\n");
-	// env.push_back("//\n");
-	// env.push_back("//		///////////////\n");
-	// env.push_back("//		//       | \n");
-	// env.push_back("//		//       O \n");//6
-	// env.push_back("//		//      /|\\\n");//7
-	// env.push_back("//		//       |\n");//8
-	// env.push_back("//		//      / \\\n");//9
-	// env.push_back("//		//\n");
-	// env.push_back("//		/////////////////\n");
-	// env.push_back("/////////////////////////////////////////////////////\n");
-	// env.push_back("//\n");
-	// env.push_back("//	Guessed Letters:\n");//14
-	// env.push_back("//\n");
-	// env.push_back("//\n");
-	// env.push_back("//	Answer:\n");//17
-	// env.push_back("//\n");
-	// env.push_back("/////////////////////////////////////////////////////\n");
 	env.push_back("/////////////////////////////////////////////////////\n");
 	env.push_back("//\n");
 	env.push_back("//\n");
@@ -48,6 +28,7 @@ Environment::Environment()
 	env.push_back("//	Answer: \n");//17
 	env.push_back("//\n");
 	env.push_back("/////////////////////////////////////////////////////\n");
+	setSecretWord(secretWord);
 }
 
 
@@ -62,7 +43,13 @@ vector<string> Environment::getEnvironment()
 	return env;
 }
 
-
+/**
+*	This method adds parts to the hangman guy given an incorrect guess.
+*	It just replaces strings in the vector env. according to the number of incorrect guesses.
+*	The user gets 6 incorrect guesses.
+*	@param none
+*	@return none
+*/
 void Environment::addPartToHangman()
 {
 	switch(incorrectGuesses)
@@ -84,14 +71,18 @@ void Environment::addPartToHangman()
 				env[9] = "//		//      / \n";
 				break;
 		case 6:
-				"//		//      / \\\n";
+				env[9] = "//		//      / \\\n";
 				break;
 		default: break;			 
 
 	}
 }
 
-
+/**
+*	This internal function to set the underscores in the environment.
+*	@param String secretWord - word to set as the underscores.
+*	@retun none
+*/
 void Environment::setSecretWord(string secretWord)
 {
 	cout << secretWord << endl;
@@ -120,7 +111,6 @@ void Environment::setSecretWord(string secretWord)
 	env[16] = baseString + reString;
 }
 
-
 /**
 *
 *	Return the number of incorrect guesses in the game.
@@ -132,8 +122,6 @@ int Environment::getNumberIncorrectGuesses()
 {
 	return incorrectGuesses;
 }
-
-
 
 /**
 *	Format the environment and print it.

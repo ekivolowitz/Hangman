@@ -80,9 +80,11 @@ int main()
 	srand(time(NULL));
 	int randomNumber = rand() % NUMBER_WORDS_IN_HANGMAN_FILE;
 	string secretWord = getRandomWord(randomNumber);
-	Environment env = new Environment(secretWord);
+	Environment env(secretWord);
 	cout << "Welcome to Hangman. This program was brought to you by Evan Kivolowitz as a way to learn C++.\n" <<  env.toString() << endl;
 
+
+	//Loop to check user input to begin the game.
 	while(true)
 	{
 		cout << "Do you want to play? \n(Y or N): ";
@@ -90,7 +92,5 @@ int main()
 		cin >> play;
 		if(checkBeginGameInput(play)) break;	
 	}
-	cout << env.toString();
 
-	free(env);
 }
